@@ -14,11 +14,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+namespace Google\Cloud\Samples\Bookshelf\FileSystem;
 
-require_once __DIR__ . '/../vendor/autoload.php';
+/**
+ * Class FakeFileStorage
+ * @package Google\Cloud\Samples\Bookshelf
+ *
+ * A simple mock that is easy to verify in tests.
+ */
+class FakeFileStorage
+{
+    public function __construct()
+    {
+        $this->count = 0;
+        $this->deletedFiles = array();
+    }
 
-/** @var Silex\Application $app */
-$app = require __DIR__ . '/../src/app.php';
-require __DIR__ . '/../src/controllers.php';
+    public function storeFile($localFilePath, $contentType)
+    {
+        $this->count += 1;
+        return 'img' . $this->count;
+    }
 
-$app->run();
+    public function deleteFile($url)
+    {
+        array_push($this->deletedFiles, $url);
+    }
+}

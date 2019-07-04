@@ -14,11 +14,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+namespace Google\Cloud\Samples\Bookshelf\DataModel;
 
-require_once __DIR__ . '/../vendor/autoload.php';
+use Google\Cloud\Samples\Bookshelf\GetConfigTrait;
+use Google\Cloud\Samples\Bookshelf\SkipTestsIfMissingCredentialsTrait;
 
-/** @var Silex\Application $app */
-$app = require __DIR__ . '/../src/app.php';
-require __DIR__ . '/../src/controllers.php';
+class MongoDbTest extends \PHPUnit_Framework_TestCase
+{
+    use DataModelTestTrait;
+    use GetConfigTrait;
+    use SkipTestsIfMissingCredentialsTrait;
 
-$app->run();
+    public function setUp()
+    {
+        parent::setUp();
+
+        $config = self::getConfig();
+
+        $this->model = new MongoDb(
+            $config['mongo_url'],
+            $config['mongo_database'],
+            $config['mongo_collection']
+        );
+    }
+}

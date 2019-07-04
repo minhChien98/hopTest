@@ -1,8 +1,8 @@
-# 1 - Hello world
+# 5 - Logging app events
 
-This folder contains the sample code for the [Hello world][step-1]
+This folder contains the sample code for the [Logging app events][step-5]
 tutorial. Please refer to the tutorial for instructions on configuring, running,
 and deploying this sample.
 
-[step-1]: https://cloud.google.com/php/getting-started/hello-world
+[step-5]: https://cloud.google.com/php/getting-started/logging-application-events
 
